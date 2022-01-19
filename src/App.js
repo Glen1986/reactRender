@@ -1,15 +1,18 @@
 import { Note } from "./Note";
 import { useState, useEffect } from "react";
+import axios from 'axios'
 
 export default function App(props) {
   const [notes, setNotes]= useState([]);
   const [newNote, setNewNote]= useState(''); 
+  const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
- fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(res => res.json())
-      .then((json)=>{
-        setNotes(json)
+ axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then((res)=>{
+        const {data} = res;
+        setNotes(data);
+        setLoading(false)
       })
   },[])
 
@@ -19,12 +22,19 @@ export default function App(props) {
 }
 const handleSubmit = (e)=> {
   e.preventDefault();
-  const noteToAddToState = {
+    const noteToAddToState = {
     id : notes.length + 1,
     title: newNote,
-    body: newNote 
+    body: newNote, 
+    userId:1
   }
-setNotes([...notes, noteToAddToState])
+  axios.post('https://jsonplaceholder.typicode.com/posts', noteToAddToState)
+    .then(res => {
+      const {data} =  res
+      setNotes(prevNotes => prevNotes.concat(data))
+    })
+
+//setNotes([...notes, noteToAddToState])
   setNewNote('')
 }
 
