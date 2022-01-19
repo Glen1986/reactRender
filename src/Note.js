@@ -1,10 +1,9 @@
-export const Note = (props) =>{
-  console.log({props})
+export const Note = ({title, body}) =>{
   return (
     <li>
-      <p>{props.content}</p>
+      <p><strong> {title}</strong></p>
       <small>
-        <time>{props.date}</time>
+        <p>{body}</p>
       </small>
     </li>
   )
