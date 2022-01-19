@@ -1,6 +1,7 @@
 import { Note } from "./Note";
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import {getAllNotes} from "./services/notes/getAllNotes";
 
 export default function App(props) {
   const [notes, setNotes]= useState([]);
@@ -8,10 +9,9 @@ export default function App(props) {
   const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
- axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((res)=>{
-        const {data} = res;
-        setNotes(data);
+ getAllNotes()
+      .then(notes =>{
+        setNotes(notes)
         setLoading(false)
       })
   },[])
