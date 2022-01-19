@@ -1,3 +1,4 @@
+import { Note } from "./Note";
 const notes =[
   {
     id: 1,
@@ -18,16 +19,6 @@ const notes =[
     important: true
   }
 ];
-const Note = ({ id, content, date }) =>{
-  return (
-    <li>
-      <p>{content}</p>
-      <small>
-        <time>{date}</time>
-      </small>
-    </li>
-  )
-};
 
 export default function App(  ) {
   return (
