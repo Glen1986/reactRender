@@ -1,8 +1,7 @@
 import { Note } from "./Note";
-import { notes } from "./Table";
 import Form from './components/Form'
 
-export default function App(  ) {
+export default function App({notes=[]}) {
   return (
     <>
     <ol>
