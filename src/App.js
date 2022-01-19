@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+const notes =[
+  {
+    id: 1,
+    content: 'HTML is easy',
+    date: '2019-09-31',
+    important: true
+  },
+    {
+    id: 2,
+    content: 'CSS is easy',
+    date: '2019-08-25',
+    important: false 
+  },
+    {
+    id: 3,
+    content: 'JS is easy',
+    date: '2019-04-11',
+    important: true
+  }
+];
+const Note = ({ id, content, date }) =>{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <li>
+      <p>{content}</p>
+      <small>
+        <time>{date}</time>
+      </small>
+    </li>
+  )
+};
+
+export default function App(  ) {
+  return (
+    <ol>
+      {notes.map((note) => <Note  key={note.id} {...note}/> )}   
+    </ol>
   );
 }
 
-export default App;
