@@ -2,6 +2,7 @@ import { Note } from "./Note";
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import {getAllNotes} from "./services/notes/getAllNotes";
+import {createNotes} from "./services/notes/createNotes";
 
 export default function App(props) {
   const [notes, setNotes]= useState([]);
@@ -28,12 +29,10 @@ const handleSubmit = (e)=> {
     body: newNote, 
     userId:1
   }
-  axios.post('https://jsonplaceholder.typicode.com/posts', noteToAddToState)
-    .then(res => {
-      const {data} =  res
-      setNotes(prevNotes => prevNotes.concat(data))
+  createNotes(noteToAddToState)
+    .then(newNote =>{
+      setNotes((prevNotes) => prevNotes.concat(newNote))
     })
-
 //setNotes([...notes, noteToAddToState])
   setNewNote('')
 }
