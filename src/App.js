@@ -1,6 +1,6 @@
 import { Note } from "./Note";
 import { notes } from "./Table";
-import {Form} from './components/Form'
+import Form from './components/Form'
 
 export default function App(  ) {
   return (
